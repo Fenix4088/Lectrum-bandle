@@ -25,11 +25,14 @@ const {getPort} = require("./getPort");
 const compiler = webpack(getConfig());
 
 
-getPort(PORT).then(port => {
-    if (port) {
+(async () => {
+    try {
+        const selectedPort = await getPort(PORT);
+        if(!selectedPort) throw new Error;
+
         const server = new DevServer({
             host: HOST,
-            port,
+            port: selectedPort,
             historyApiFallback: true,
             open: true,
             onAfterSetupMiddleware: (devServer) => {
@@ -38,7 +41,7 @@ getPort(PORT).then(port => {
                 }))
             },
             onListening: (devServer) => {
-                console.log(`${chalk.greenBright('➡ Server listen on ')} ${chalk.blueBright(`http://${HOST}:${port}`)}`)
+                console.log(`${chalk.greenBright('➡ Server listen on ')} ${chalk.blueBright(`http://${HOST}:${selectedPort}`)}`)
             },
             client: {
                 overlay: true,
@@ -48,8 +51,11 @@ getPort(PORT).then(port => {
         }, compiler)
 
         server.start()
-    }
-})
 
+    } catch(e) {
+        console.log(chalk.redBright(e.message))
+    }
+
+})()
 
 
