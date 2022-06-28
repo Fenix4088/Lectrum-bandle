@@ -14,33 +14,42 @@ const DevServer = require('webpack-dev-server')
 const hot = require('webpack-hot-middleware')
 const chalk = require('chalk') // Пакет для раскрашивания консоли
 
+
 //Config
 const getConfig = require('./webpack.config')
 
 //Constants
 const {HOST, PORT} = require('./constatnts')
+const {getPort} = require("./getPort");
 
 const compiler = webpack(getConfig());
 
-const server = new DevServer({
-    host: HOST,
-    port: PORT,
-    historyApiFallback: true,
-    open: true,
-    onAfterSetupMiddleware: (devServer) => {
-        devServer.app.use(hot(compiler, {
-            log: false
-        }))
-    },
-    onListening: (devServer) => {
-        console.log(`${chalk.greenBright('➡ Server listen on ')} ${chalk.blueBright(`http://${HOST}:${PORT}`)}`)
-    },
-    client: {
-        overlay: true,
-        logging: 'none',
-        progress: true
-    }
-}, compiler)
 
-server.start()
+getPort(PORT).then(port => {
+    if (port) {
+        const server = new DevServer({
+            host: HOST,
+            port,
+            historyApiFallback: true,
+            open: true,
+            onAfterSetupMiddleware: (devServer) => {
+                devServer.app.use(hot(compiler, {
+                    log: false
+                }))
+            },
+            onListening: (devServer) => {
+                console.log(`${chalk.greenBright('➡ Server listen on ')} ${chalk.blueBright(`http://${HOST}:${port}`)}`)
+            },
+            client: {
+                overlay: true,
+                logging: 'none',
+                progress: true
+            }
+        }, compiler)
+
+        server.start()
+    }
+})
+
+
 
