@@ -16,7 +16,7 @@ const chalk = require('chalk') // Пакет для раскрашивания �
 
 
 //Config
-const getConfig = require('./webpack.config')
+const getConfig = require('./config/webpack.dev')
 
 //Constants
 const {HOST, PORT} = require('./constatnts')

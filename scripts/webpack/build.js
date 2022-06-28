@@ -3,7 +3,7 @@ const webpack = require('webpack')
 const chalk = require('chalk') // Пакет для раскрашивания консоли
 
 //Config
-const getConfig = require('./webpack.config')
+const getConfig = require('./config/webpack.prod')
 
 const compiler = webpack(getConfig());
 

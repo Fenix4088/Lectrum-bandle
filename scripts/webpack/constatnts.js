@@ -2,6 +2,7 @@ const {resolve} = require('path')
 const  {path: PROJECT_ROOT} = require('app-root-path')
 
 const BUILD_DIR = resolve(PROJECT_ROOT, './build')
+console.log("Build dir path", BUILD_DIR)
 const SOURCE_DIR = resolve(PROJECT_ROOT, './src')
 const HOST = 'localhost'
 const PORT = 3000

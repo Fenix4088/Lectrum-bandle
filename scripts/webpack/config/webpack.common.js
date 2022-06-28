@@ -1,7 +1,5 @@
-const path = require("path");
 const HtmlWebpackPlugin = require('html-webpack-plugin')
-const {CleanWebpackPlugin} = require('clean-webpack-plugin')
-const {BUILD_DIR, PROJECT_ROOT, SOURCE_DIR} = require("./constatnts");
+const {BUILD_DIR, SOURCE_DIR} = require("../constatnts");
 
 /*
     Типы конфигов
@@ -11,16 +9,14 @@ const {BUILD_DIR, PROJECT_ROOT, SOURCE_DIR} = require("./constatnts");
 */
 module.exports = () => {
     return {
-        mode: "none",
-        devtool: false,
-        entry: ['webpack-hot-middleware/client?reload=true&quite=true', SOURCE_DIR],
+        entry: [SOURCE_DIR],
         output: {
             path: BUILD_DIR,
             filename: "bundle.js"
         },
         module: {
             rules: [
-                {
+                { //TODO: refactor styles loader
                     test: /\.css$/,
                     use: ['style-loader', 'css-loader']
                 }
@@ -32,12 +28,6 @@ module.exports = () => {
                 title: "Learn Webpack",
                 favicon: ""
             }),
-            new CleanWebpackPlugin({
-                root: PROJECT_ROOT,
-                verbose: true,
-                protectWebpackAssets: true,
-                cleanAfterEveryBuildPatterns: BUILD_DIR
-            })
         ]
     }
 }
