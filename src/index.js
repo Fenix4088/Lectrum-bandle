@@ -1,5 +1,5 @@
 import createDOMElement from './some-module'
-import './theme/main.css'
+// import './theme/main.css'
 
 const div = createDOMElement('div')
 div.innerText = 'Hello Webpack 5+'
