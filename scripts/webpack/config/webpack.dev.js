@@ -7,14 +7,6 @@ module.exports = () => {
         mode: "none",
         devtool: false, //TODO: configure source maps
         entry: ['webpack-hot-middleware/client?reload=true&quite=true'],
-        // module: {
-        //     rules: [
-        //         {
-        //             test: /\.css$/,
-        //             use: ['style-loader', 'css-loader']
-        //         }
-        //     ]
-        // },
         plugins: []
     })
 }
