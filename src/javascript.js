@@ -1,7 +1,7 @@
 console.clear()
 
 class Human {
-    KING = 'HUMAN'
+    KIND = 'HUMAN'
     constructor(name, age) {
         this.name = name;
         this.age = age;
@@ -13,15 +13,16 @@ class Human {
     sayAge() {
         console.log(`Age: ${this.age}`)
     }
-    sayKing = () => {
-        console.log(`King: ${this.KING}`)
+    sayKind = () => {
+        console.log(`King: ${this.KIND}`)
     }
 }
 
 const gendalf = new Human('Gendalf', 666)
 
+gendalf.sayName()
 gendalf.sayAge()
-gendalf.sayKing()
+gendalf.sayKind()
 
 export const a = 1;
 export const b = 5;

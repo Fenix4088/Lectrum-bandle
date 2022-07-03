@@ -1,5 +1,6 @@
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const {BUILD_DIR, SOURCE_DIR} = require("../constatnts");
+const webpack = require("webpack");
 
 /*
     Типы конфигов
@@ -16,6 +17,12 @@ module.exports = () => {
         },
         module: {
             rules: [
+                {
+                    test: /\.js$/,
+                    use: {
+                        loader: 'babel-loader'
+                    },
+                },
                 { //TODO: refactor styles loader
                     test: /\.css$/,
                     use: ['style-loader', 'css-loader']
@@ -28,6 +35,9 @@ module.exports = () => {
                 title: "Learn Webpack",
                 favicon: ""
             }),
+            new webpack.DefinePlugin({
+                'process.env.NODE_ENV': JSON.stringify('development')
+            })
         ]
     }
 }
