@@ -22,6 +22,9 @@ module.exports = () => {
           test: /\.js$/,
           use: {
             loader: 'babel-loader',
+            options: {
+              compact: true // уберает лишние пробелы в js бандле
+            },
           },
         },
         {
@@ -33,10 +36,9 @@ module.exports = () => {
               loader: 'css-loader',
               options: {
                 modules: {
-                  localIdentName: "[local]--[hash:base64:5]"
+                  localIdentName: '[local]--[hash:base64:5]',
                 },
                 sourceMap: true,
-
               },
             },
             {
@@ -46,10 +48,10 @@ module.exports = () => {
                   plugins: [
                     // postcss plugins chain
                     env({
-                      stage: 0 //default stage:2
-                    })
-                  ]
-                }
+                      stage: 0, //default stage:2
+                    }),
+                  ],
+                },
               },
             },
           ],
