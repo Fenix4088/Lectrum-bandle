@@ -10,4 +10,4 @@ div.style.height = '20px'
 document.body.appendChild(div)*/
 
 // import './javascript'
-import './react-example'
+import './react/react-example'
